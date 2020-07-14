@@ -1,0 +1,92 @@
+
+
+<!DOCTYPE html>
+
+
+
+<html>
+    <head>
+    
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/main.css" type="text/css" >
+    </head>
+    <body>
+        <h1>le jeu du covid 19</h1>
+        <h2 style="color:#0823E8 ;">r&#232;gles</h2>
+        <br>
+        <h4 style="color:#1440E5;">D&#201;PLACEMENT</h4>
+        <p>
+            Pour se d&#233;placer, il faut utiliser les touches w,a,s et d ou les fl&#232;ches.Votre personnage est le cercle gris avec des points rouges.
+        </p>
+        <br>
+        <h4 style="color:#1440E5;">LE BUT DU JEU</h4>
+        <p>
+            Le but du jeu est de contaminer tous les cercles verts. En tout, il y en a 20. Pour cela, il faudra vous d&#233;placer &#224; proximit&#233; de ceux-ci. Une fois contamin&#233;s,
+            les cercles verts deviendront rouges.  
+        </p>
+        <br>
+        <h4 style="color:#1440E5;">LES SEGMENTS PLUS</h4>
+        <p>
+            Il y a des fronti&#232;res, ce sont les lignes noires, vous ne pouvez pas les d&#233;passer, mais les cercles contamin&#233;s ou non le peuvent. Mais quand ils sont trop loin de la fronti&#232;re, ils r&#233;apparaissent quelque part sur la carte.</p>
+            <p>
+            Il y a une fa&#231;on de lancer des boules. Pour cela, il faut bouger dans la direction dans laquelle vous voulez envoyer votre balle et appuyer sur "e". Quand un cercle contamin&#233; touche un cercle non contamin&#233;, les deux cercles deviennent contamin&#233;s.  
+        </p>
+        <br>
+        <h4 style="color:#1440E5;">LES DOCTEURS</h4>
+        <p>
+                Le docteur appara&#238;t au niveau 2. Les docteurs sont repr&#233;sent&#233;s par des cercles blancs, ils peuvent soigner les cercles contamin&#233;s. Les docteurs ne peuvent en soigner que 5. 
+        </p>
+        <br>
+        <h4 style="color:#1440E5;">Les docs</h4>
+        <p>
+                Le doc appara&#238;t au niveau 4. Les docs ressemblent aux docteurs sauf qu'ils ne bougent pas et sont plus gros.Ils peuvent soigner 20 personnes avant de dispara&#238;tre. 
+        </p>
+        <br>
+        <h5 style="color:#1440E5;">Les docs bleus</h5>
+        <p>
+            Le doc bleu appara&#238;t au niveau 7.
+            Les docs bleus ont un point bleu au centre.
+            Les docs bleus ressemblent aux docs sauf qu'ils bougent.
+        </p>
+        <br>
+        <h5 style="color:#1440E5;">Les docs rouges</h5>
+        <p>
+            Le doc rouges appara&#238;t au niveau 9.
+            Les docs rouges ont un point rouge au centre.
+            Les docs rouges ressemblent aux docs bleus sauf qu'ils grossissent quand ils d&#233;contaminent. 
+        </p>
+        <br>
+        <h5 style="color:#1440E5;">Les docs verts</h5>
+        <p>
+            Le doc vert appara&#238;t au niveau 11.
+            Les docs verts ont un point vert au centre.
+            Les docs verts ressemblent aux docs rouges sauf qu'ils sont immortelles.
+        </p>
+        <br>
+        <h5 style="color:#1440E5;">Les docteurs am&#233;lior&#233;s</h5>
+        <p>
+                Le docteur am&#233;lior&#233; appara&#238;t au niveau 5. Les docteurs am&#233;lior&#233;s ressemblent aux docteurs sauf qu'ils ont un point bleu au centre. Quand ils d&#233;contaminent quelqu'un ils disparaissent et apparaissent 20 secondes plus tard pr&#232;s d'un doc de n'importe quelle couleur.
+        </p>
+        <br>
+        <form action="com.php" method="post">
+            <h5>Est-ce que les r&#232;gles sont claires?</h5>
+            <input class="varr" type="text" name="rep" id="rep" placeholder="oui ou non">
+            <h5>commentaires.</h5>
+            <input class="varr" type="text" name="comment" id="comment" placeholder="commentaires">
+            <button type="submit">envoyer</button>
+        </form>
+        <br>
+        <div class="varr">
+            <a href="./index.php">
+                <button class="btn btn-success v">
+                    continuer
+                </button>
+            </a>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script>
+        </script>
+    </body>
+</html>

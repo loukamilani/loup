@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Carr&#233;-Royal</title>
+
+        <h2 id="verbe">verbe : manger</h2>
+        <h4 id="pronom">pronom : je</h4>
+        <input id="reb" type="text"></input>
+        <button onclick="valider()">valider</button>
+        <script>
+            draw()
+            var verbe = "aller"
+            var pronom = "je"
+            var aler = ["vais","vas","va","allons","allez","vont"]
+
+            function draw(){
+                document.getElementById("verbe").innerHTML = "verbe : " + verbe
+                document.getElementById("pronom").innerHTML = "pronom : " + pronom
+                setTimeout(draw,10)
+            }
+            function reset(n){
+                switch(n){
+                    case 0:
+                        pronom = "je"
+                        break
+                    case 1:
+                        pronom = "tu"
+                        break
+                    case 2:
+                        pronom = "il"
+                        break
+                    case 3:
+                        pronom = "nous"
+                        break
+                    case 4:
+                        pronom = "vous"
+                        break
+                    case 5:
+                        pronom = "ils"
+                        break
+                }
+            }
+            function aller(){
+                switch(pronom){
+                    case "je":
+                        if(document.getElementById("reb").value == aler[0]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                    case "tu":
+                        if(document.getElementById("reb").value == aler[1]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                    case "il":
+                        if(document.getElementById("reb").value == aler[2]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                    case "nous":
+                        if(document.getElementById("reb").value == aler[3]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                    case "vous":
+                        if(document.getElementById("reb").value == aler[4]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                    case "ils":
+                        if(document.getElementById("reb").value == aler[5]){
+                            alert("bravo")
+                            var n = Math.floor((Math.random() * 6))
+                            reset(n)
+                        }
+                        break
+                }
+            }
+            function valider(){
+                switch(verbe){
+                    case "aller":
+                        aller()
+                        break
+                    case "&#232;tre":
+                        etre()
+                        break
+                    case "avoir":
+                        avoir()
+                        break
+                    case "finir":
+                        finir()
+                        break
+                    case "faire":
+                        faire()
+                        break
+                }
+            }
+            
+                    </script>
+        
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </head>
+    
+</html>

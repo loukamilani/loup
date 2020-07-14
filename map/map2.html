@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+        <h1>le jeu du covid 19</h1>
+        <p id="p"></p>
+        <script >
+let player;
+
+
+let i = 0
+this.damage = 20
+let currentDirectionX = 3
+let currentDirectionY = 3
+var contaminer = 0
+var n = 0
+var sec = 0
+var minne = 0
+var b = 0
+var d = 0
+var w = 0
+var long = window.innerWidth  * 0.95
+var large = window.innerHeight  * 0.85
+
+function setup(){
+    createCanvas(long,large)
+    player = new Player()
+    buisson = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    docteur = new Docteur(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_1 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_2 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_3 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_4 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_5 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_6 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_7 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_8 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_9 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_10 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_12 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_13 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_14 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_15 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_16 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_17 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_18 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_19 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+    buisson_11 = new Buisson(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500));
+}
+
+myGameMap = [
+    {x: 100,y:200},
+    {x: 1000,y:200},
+    {x: 800,y:200},
+    {x: 600,y:200},
+    {x: 500,y:200}
+]
+class Player {
+    constructor(){
+        this.position = createVector(Math.floor((Math.random() * 3000)- 1500),Math.floor((Math.random() * 3000)- 1500))
+        this.tache_1 = [Math.floor((Math.random() * 30)- 15),Math.floor((Math.random() * 30)- 15)]
+        this.tache_2 = [Math.floor((Math.random() * 30)- 15),Math.floor((Math.random() * 30)- 15)]
+        this.tache_3 = [Math.floor((Math.random() * 30)- 15),Math.floor((Math.random() * 30)- 15)]
+        this.tache_4 = [Math.floor((Math.random() * 30)- 15),Math.floor((Math.random() * 30)- 15)]
+        this.tache_5 = [Math.floor((Math.random() * 30)- 15),Math.floor((Math.random() * 30)- 15)]
+        
+    }
+    display(){
+        
+        fill(154, 140, 140  )
+        ellipse(this.position.x,this.position.y,50,50)
+        fill(255,0,0)
+        ellipse(this.position.x + this.tache_1[0], this.position.y + this.tache_1[1],10,10)
+        ellipse(this.position.x + this.tache_2[0], this.position.y + this.tache_2[1],10,10)
+        ellipse(this.position.x + this.tache_3[0], this.position.y + this.tache_3[1],10,10)
+        ellipse(this.position.x + this.tache_4[0], this.position.y + this.tache_4[1],10,10)
+        ellipse(this.position.x + this.tache_5[0], this.position.y + this.tache_5[1],10,10)
+        fill(0,0,0)
+        ellipse(1520,0,10,3040)
+        ellipse(- 1520,0,10,3040)
+        ellipse(0,1520,3040,10)
+        ellipse(0,- 1520,3040,10)
+    }
+    handleKeys(e){
+        let directions = [createVector(-1,0),createVector(1,0),createVector(0,1),createVector(0,-1)].map((vector)=>vector.mult(5))
+        
+             if (e.key == 'a' && this.position.x >= - 1500){
+                currentDirectionX = 0
+            }   
+            else if (e.key == 'd' && this.position.x <= 1500){
+                currentDirectionX = 1
+            }
+            else if (e.key == 'ArrowLeft' && this.position.x >= - 1500){
+                currentDirectionX = 0
+            }   
+            else if (e.key == 'ArrowRight' && this.position.x <= 1500){
+                currentDirectionX = 1
+            }
+            else if (e.key == 'A' && this.position.x >= - 1500){
+                currentDirectionX = 0
+            }   
+            else if (e.key == 'D' && this.position.x <= 1500){
+                currentDirectionX = 1
+            }
+            
+            
+            if (e.key == 's' && this.position.y <= 1500){
+                currentDirectionY = 0
+            }
+            else if (e.key == 'w' && this.position.y >= - 1500){
+                currentDirectionY = 1
+            }
+            else if (e.key == 'S' && this.position.y <= 1500){
+                currentDirectionY = 0
+            }
+            else if (e.key == 'W' && this.position.y >= - 1500){
+                currentDirectionY = 1
+            }
+            else if (e.key == 'ArrowDown' && this.position.y <= 1500){
+                currentDirectionY = 0
+            }
+            else if (e.key == 'ArrowUp' && this.position.y >= - 1500){
+                currentDirectionY = 1
+            }
+            
+            //alert(currentDirectionY + "  " + currentDirectionX)
+            
+    }
+}
+class Docteur
+{
+    constructor(x,y){
+        this.x = x
+        this.y = y
+        this.n = 0
+        this.i = 110
+        this.directions = 4
+    }
+    display(){
+        if(Math.sqrt( ( this.x-player.position.x ) * ( this.x-player.position.x )  + ( this.y-player.position.y ) * ( this.y-player.position.y ) ) < ( 25 + 50 )){
+            if(w == 0){
+            
+            setCookie('game', 0, 30)
+        
+        
+        window.location.href = './gameover.php'
+        w = 1
+        }
+        }   
+        if(Math.sqrt( ( this.x-buisson.x ) * ( this.x-buisson.x )  + ( this.y-buisson.y ) * ( this.y-buisson.y ) ) < ( 70 + 60 ) && buisson.n == 1){
+            buisson.n = 0
+            this.n += 1
+            contaminer -= 1
+        }else if(Math.sqrt( ( this.x-buisson_1.x ) * ( this.x-buisson_1.x )  + ( this.y-buisson_1.y ) * ( this.y-buisson_1.y ) ) < ( 70 + 60 ) && buisson_1.n == 1){
+            buisson_1.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_2.x ) * ( this.x-buisson_2.x )  + ( this.y-buisson_2.y ) * ( this.y-buisson_2.y ) ) < ( 70 + 60 ) && buisson_2.n == 1){
+            buisson_2.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_3.x ) * ( this.x-buisson_3.x )  + ( this.y-buisson_3.y ) * ( this.y-buisson_3.y ) ) < ( 70 + 60 ) && buisson_3.n == 1){
+            buisson_3.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_4.x ) * ( this.x-buisson_4.x )  + ( this.y-buisson_4.y ) * ( this.y-buisson_4.y ) ) < ( 70 + 60 ) && buisson_4.n == 1){
+            buisson_4.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_5.x ) * ( this.x-buisson_5.x )  + ( this.y-buisson_5.y ) * ( this.y-buisson_5.y ) ) < ( 120 + 60 ) && buisson_5.n == 1){
+            buisson_5.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_6.x ) * ( this.x-buisson_6.x )  + ( this.y-buisson_6.y ) * ( this.y-buisson_6.y ) ) < ( 120 + 60 ) && buisson_6.n == 1){
+            buisson_6.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_7.x ) * ( this.x-buisson_7.x )  + ( this.y-buisson_7.y ) * ( this.y-buisson_7.y ) ) < ( 120 + 60 ) && buisson_7.n == 1){
+            buisson_7.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_8.x ) * ( this.x-buisson_8.x )  + ( this.y-buisson_8.y ) * ( this.y-buisson_8.y ) ) < ( 120 + 60 ) && buisson_8.n == 1){
+            buisson_8.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_9.x ) * ( this.x-buisson_9.x )  + ( this.y-buisson_9.y ) * ( this.y-buisson_9.y ) ) < ( 120 + 60 ) && buisson_9.n == 1){
+            buisson_9.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_10.x ) * ( this.x-buisson_10.x )  + ( this.y-buisson_7.y ) * ( this.y-buisson_10.y ) ) < ( 120 + 60 ) && buisson_10.n == 1){
+            buisson_10.n = 0
+            this.n += 1
+            contaminer -= 1
+        }else if(Math.sqrt( ( this.x-buisson_11.x ) * ( this.x-buisson_11.x )  + ( this.y-buisson_11.y ) * ( this.y-buisson_11.y ) ) < ( 120 + 25 ) && buisson_11.n == 1){
+            buisson_11.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_12.x ) * ( this.x-buisson_12.x )  + ( this.y-buisson_12.y ) * ( this.y-buisson_12.y ) ) < ( 120 + 60 ) && buisson_12.n == 1){
+            buisson_12.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_13.x ) * ( this.x-buisson_13.x )  + ( this.y-buisson_13.y ) * ( this.y-buisson_13.y ) ) < ( 120 + 60 ) && buisson_13.n == 1){
+            buisson_13.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_14.x ) * ( this.x-buisson_14.x )  + ( this.y-buisson_14.y ) * ( this.y-buisson_14.y ) ) < ( 120 + 60 ) && buisson_14.n == 1){
+            buisson_14.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_15.x ) * ( this.x-buisson_15.x )  + ( this.y-buisson_15.y ) * ( this.y-buisson_15.y ) ) < ( 120 + 60 ) && buisson_15.n == 1){
+            buisson_15.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_16.x ) * ( this.x-buisson_16.x )  + ( this.y-buisson_16.y ) * ( this.y-buisson_16.y ) ) < ( 120 + 60 ) && buisson_16.n == 1){
+            buisson_16.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_17.x ) * ( this.x-buisson_17.x )  + ( this.y-buisson_17.y ) * ( this.y-buisson_17.y ) ) < ( 120 + 60 ) && buisson_17.n == 1){
+            buisson_17.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_18.x ) * ( this.x-buisson_18.x )  + ( this.y-buisson_18.y ) * ( this.y-buisson_18.y ) ) < ( 120 + 60 ) && buisson_18.n == 1){
+            buisson_18.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_19.x ) * ( this.x-buisson_19.x )  + ( this.y-buisson_19.y ) * ( this.y-buisson_19.y ) ) < ( 120 + 60 ) && buisson_19.n == 1){
+            buisson_19.n = 0
+            this.n += 1
+            contaminer -= 1
+        }
+        fill(255,255,255)
+        ellipse(this.x,this.y,50,50)
+            if(this.i < 300){
+                switch(this.directions){
+                    case 0:
+                        this.x += 1
+                        break
+                    case 1:
+                        this.x -= 1
+                        break
+                    case 2:
+                        this.y += 1
+                        break
+                    case 3:
+                        this.y -= 1
+                        break
+                }
+                this.i += 1
+            }else{
+                this.directions = Math.floor((Math.random() * 4))
+                this.i = 0
+            }
+            if(this.x < - 1500 || this.x > 1500){
+            this.x = Math.floor((Math.random() * 3000)- 1500)
+            }
+            if(this.y < - 1500 || this.y > 1500){
+                this.y = Math.floor((Math.random() * 3000)- 1500)
+            }
+        }        
+    }
+class Buisson {
+    constructor(x,y){
+        this.x = x
+        this.y = y
+        this.n = 0
+        this.i = 110
+        this.directions = 4
+    }
+    display(){
+        fill(0,255,0)
+        if ( Math.sqrt( ( this.x-player.position.x ) * ( this.x-player.position.x )  + ( this.y-player.position.y ) * ( this.y-player.position.y ) ) < ( 70 + 25 ) ) 
+        {
+            if(this.n == 0){
+                contaminer += 1
+            }
+            this.n = 1
+            fill(254,111,100)
+        }else if(this.n == 0){
+            fill(0,255,0)
+        }else{
+            fill(254,111,100)
+        }
+        if(Math.sqrt( ( this.x-buisson.x ) * ( this.x-buisson.x )  + ( this.y-buisson.y ) * ( this.y-buisson.y ) ) < ( 70 + 60 ) && buisson.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }else if(Math.sqrt( ( this.x-buisson_1.x ) * ( this.x-buisson_1.x )  + ( this.y-buisson_1.y ) * ( this.y-buisson_1.y ) ) < ( 70 + 60 ) && buisson_1.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_2.x ) * ( this.x-buisson_2.x )  + ( this.y-buisson_2.y ) * ( this.y-buisson_2.y ) ) < ( 70 + 60 ) && buisson_2.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_3.x ) * ( this.x-buisson_3.x )  + ( this.y-buisson_3.y ) * ( this.y-buisson_3.y ) ) < ( 70 + 60 ) && buisson_3.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_4.x ) * ( this.x-buisson_4.x )  + ( this.y-buisson_4.y ) * ( this.y-buisson_4.y ) ) < ( 70 + 60 ) && buisson_4.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_5.x ) * ( this.x-buisson_5.x )  + ( this.y-buisson_5.y ) * ( this.y-buisson_5.y ) ) < ( 120 + 60 ) && buisson_5.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_6.x ) * ( this.x-buisson_6.x )  + ( this.y-buisson_6.y ) * ( this.y-buisson_6.y ) ) < ( 120 + 60 ) && buisson_6.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_7.x ) * ( this.x-buisson_7.x )  + ( this.y-buisson_7.y ) * ( this.y-buisson_7.y ) ) < ( 120 + 60 ) && buisson_7.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_8.x ) * ( this.x-buisson_8.x )  + ( this.y-buisson_8.y ) * ( this.y-buisson_8.y ) ) < ( 120 + 60 ) && buisson_8.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_9.x ) * ( this.x-buisson_9.x )  + ( this.y-buisson_9.y ) * ( this.y-buisson_9.y ) ) < ( 120 + 60 ) && buisson_9.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_10.x ) * ( this.x-buisson_10.x )  + ( this.y-buisson_7.y ) * ( this.y-buisson_10.y ) ) < ( 120 + 60 ) && buisson_10.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }else if(Math.sqrt( ( this.x-buisson_11.x ) * ( this.x-buisson_11.x )  + ( this.y-buisson_11.y ) * ( this.y-buisson_11.y ) ) < ( 120 + 25 ) && buisson_11.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_12.x ) * ( this.x-buisson_12.x )  + ( this.y-buisson_12.y ) * ( this.y-buisson_12.y ) ) < ( 120 + 60 ) && buisson_12.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_13.x ) * ( this.x-buisson_13.x )  + ( this.y-buisson_13.y ) * ( this.y-buisson_13.y ) ) < ( 120 + 60 ) && buisson_13.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_14.x ) * ( this.x-buisson_14.x )  + ( this.y-buisson_14.y ) * ( this.y-buisson_14.y ) ) < ( 120 + 60 ) && buisson_14.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_15.x ) * ( this.x-buisson_15.x )  + ( this.y-buisson_15.y ) * ( this.y-buisson_15.y ) ) < ( 120 + 60 ) && buisson_15.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_16.x ) * ( this.x-buisson_16.x )  + ( this.y-buisson_16.y ) * ( this.y-buisson_16.y ) ) < ( 120 + 60 ) && buisson_16.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_17.x ) * ( this.x-buisson_17.x )  + ( this.y-buisson_17.y ) * ( this.y-buisson_17.y ) ) < ( 120 + 60 ) && buisson_17.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_18.x ) * ( this.x-buisson_18.x )  + ( this.y-buisson_18.y ) * ( this.y-buisson_18.y ) ) < ( 120 + 60 ) && buisson_18.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+        else if(Math.sqrt( ( this.x-buisson_19.x ) * ( this.x-buisson_19.x )  + ( this.y-buisson_19.y ) * ( this.y-buisson_19.y ) ) < ( 120 + 60 ) && buisson_19.n == 1){
+            fill(254,111,100)
+            if(this.n == 0){
+                contaminer += 1
+                
+            }
+            this.n = 1
+        }
+
+        ellipse(this.x,this.y,50,50)
+        if(this.i < 300){
+            switch(this.directions){
+                case 0:
+                    this.x += 1
+                    break
+                case 1:
+                    this.x -= 1
+                    break
+                case 2:
+                    this.y += 1
+                    break
+                case 3:
+                    this.y -= 1
+                    break
+            }
+            this.i += 1
+        }else{
+            this.directions = Math.floor((Math.random() * 4))
+            this.i = 0
+        }
+        if(this.x < - 2000 || this.x > 2000){
+            this.x = Math.floor((Math.random() * 3000)- 1500)
+        }
+        if(this.y < - 2000 || this.y > 2000){
+            this.y = Math.floor((Math.random() * 3000)- 1500)
+        }
+    }
+} 
+function keyReleased(){
+    currentDirectionX = 3
+    currentDirectionY = 3 
+}
+function keyPressed(e){
+    player.handleKeys(e)
+}
+function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+        }
+        return "";
+        }
+function setCookie(cname,cvalue,exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}  
+function draw(){
+    push()
+    translate(-player.position.x+width/2,-player.position.y+height/2)
+    background(24,231,184)
+    buisson_1.display()
+    buisson_2.display()
+    buisson_3.display()
+    buisson_4.display()
+    buisson_5.display()
+    buisson_6.display()
+    buisson_7.display()
+    buisson_8.display()
+    buisson_9.display()
+    buisson_10.display()
+    buisson_11.display()
+    buisson_12.display()
+    buisson_13.display()
+    buisson_14.display()
+    buisson_15.display()
+    buisson_16.display()
+    buisson_17.display()
+    buisson_18.display()
+    buisson_19.display()
+    player.display()
+    if(b < 60){
+        b += 1
+    }else{
+        b = 0
+        sec += 1
+    }
+    if(sec < 59){
+        if(d == 0){
+        document.getElementById("p").innerHTML = contaminer + " contamin&#233;(s)  niveau 2    temps " + sec + " sec";
+        }else{
+            document.getElementById("p").innerHTML = contaminer + " contamin&#233;(s)  niveau 2    temps " + minne + " : " + sec + " min";
+        }
+        
+    }
+    else{
+        minne += 1
+        sec = 0
+        d = 1
+        document.getElementById("p").innerHTML = contaminer + " contamin&#233;(s)  niveau 2    temps " + minne + " : " + sec + " min";
+    }
+    if(docteur.n < 6){
+        docteur.display()
+    }
+    if(contaminer == 20){
+        if(n == 0){
+            alert('prochain niveau!')
+            n = 1
+            setCookie('min', minne, 30)
+            setCookie('sec', sec, 30)
+            setCookie('game', 2, 30)
+            window.location.href = './nextlevel.php'
+        }
+        
+    }
+    buisson.display()
+    console.log(contaminer)
+    
+   
+    if(player.position.x >= - 1500 && currentDirectionX == 0){
+            player.position.x -= 3.5
+        }
+        else if(currentDirectionX == 1 && player.position.x <= 1500){
+            player.position.x += 3.5
+        }
+       
+       
+       if(currentDirectionY == 0 && player.position.y <= 1500){
+            player.position.y += 3.5
+            
+        }
+        else if(currentDirectionY == 1 && player.position.y >= - 1500){
+            player.position.y -= 3.5
+        }
+        
+    
+    pop()
+}
+</script>
+<script>
+
+</script>
+    </body>
+</html>
